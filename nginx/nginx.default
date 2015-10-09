@@ -24,6 +24,8 @@ server {
     auth_request /auth;
     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
     proxy_buffering off;
+    proxy_set_header X-Docker-Token "";
+
   }
   location /v1/_ping {
     auth_basic off;
