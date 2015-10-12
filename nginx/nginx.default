@@ -25,7 +25,8 @@ server {
     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
     proxy_buffering off;
     proxy_set_header X-Docker-Token "";
-
+    proxy_set_header  Host           $http_host;   # required for docker client's sake
+    proxy_set_header  X-Real-IP      $remote_addr; # pass on real client's IP
   }
   location /v1/_ping {
     auth_basic off;
